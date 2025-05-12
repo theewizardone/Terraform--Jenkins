@@ -21,7 +21,7 @@ pipeline {
         stage('Terraform Init & Plan') {
             steps {
                 dir('terraform') {
-                    sh '''
+                    bat '''
                         terraform init
                         terraform plan -out=tfplan
                         terraform show -no-color tfplan > tfplan.txt
@@ -52,7 +52,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 dir('terraform') {
-                    sh 'terraform apply -input=false tfplan'
+                    bat 'terraform apply -input=false tfplan'
                 }
             }
         }
@@ -67,4 +67,3 @@ pipeline {
         }
     }
 }
-
