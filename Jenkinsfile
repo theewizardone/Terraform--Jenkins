@@ -23,7 +23,7 @@ pipeline {
 
         stage('Plan') {
             steps {
-                bat 'pwd'
+                bat 'echo %cd%' // Replaced pwd with echo %cd% for Windows compatibility
                 bat 'cd terraform && terraform init'
                 bat 'cd terraform && terraform plan -out=tfplan'
                 bat 'cd terraform && terraform show -no-color tfplan > tfplan.txt'
